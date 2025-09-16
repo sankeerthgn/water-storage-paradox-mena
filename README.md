@@ -5,7 +5,6 @@ Code to (1) identify agricultural reservoirs in MENA with Google Earth Engine,
 (3) track atmospheric moisture footprints (Python).
 
 ## Repository layout
-```
 
 /gee/
 small\_reservoirs.js
@@ -14,7 +13,6 @@ evaporation.m
 /python/
 atmosphere\_tracking.py
 
-````
 
 ## Data (expected paths & names)
 - **GEE**: country cropland assets like `projects/ee-<user>/assets/<code>Cropland` (e.g., `afgCropland`).
@@ -39,7 +37,7 @@ atmosphere\_tracking.py
   ```matlab
   year = 2023;   % edit in the script if needed
   evaporation
-````
+``
 
 * Output: `xdailyEvaporation_MENA_4m_<YEAR>.mat` (daily evaporation per grid cell).
 
@@ -62,7 +60,7 @@ atmosphere\_tracking.py
 ## Repro notes
 
 * Coordinate systems: scripts assume regular lat/lon grids (EPSG:4326).
-* Large/raster inputs aren’t included; see **Data** section for required filenames and variables.
+* Large/raster inputs aren’t included.
 * For GEE, adjust `scale` if you change reservoir size classes.
 
 ````
