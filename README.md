@@ -34,7 +34,7 @@ atmosphere_tracking.py
   evaporation_MENA
 Output: xdailyEvaporation_MENA_4m_<YEAR>.mat (daily evaporation per grid cell).
 
-3) Python — atmospheric moisture tracking
+### 3) Python — atmospheric moisture tracking
 
 Python ≥3.9. Install deps:
 cd python
