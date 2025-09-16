@@ -1,4 +1,4 @@
-# Water Storage Paradox – MENA (Code & Repro Pack)
+# Water Storage Paradox – MENA
 
 Code to (1) identify agricultural reservoirs in MENA with Google Earth Engine,  
 (2) compute reservoir evaporation (MATLAB), and  
