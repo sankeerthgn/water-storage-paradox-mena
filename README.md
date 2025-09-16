@@ -62,5 +62,3 @@ atmosphere\_tracking.py
 * Coordinate systems: scripts assume regular lat/lon grids (EPSG:4326).
 * Large/raster inputs aren’t included.
 * For GEE, adjust `scale` if you change reservoir size classes.
-
-````
