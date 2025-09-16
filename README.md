@@ -1,18 +1,25 @@
 # Water Storage Paradox – MENA (Code & Repro Pack)
 
-Code to (1) identify agricultural reservoirs in MENA with Google Earth Engine, (2) compute reservoir evaporation (MATLAB), and (3) track atmospheric moisture footprints (Python).
+Code to (1) identify agricultural reservoirs in MENA with Google Earth Engine,  
+(2) compute reservoir evaporation (MATLAB), and  
+(3) track atmospheric moisture footprints (Python).
 
 ## Repository layout
+```
+
 /gee/
-small_reservoirs.js
+small\_reservoirs.js
 /matlab/
 evaporation.m
 /python/
-atmosphere_tracking.py
+atmosphere\_tracking.py
+
+````
+
 ## Data (expected paths & names)
-- GEE: country cropland assets like `projects/ee-<user>/assets/<code>Cropland` (e.g., `afgCropland`).
-- MATLAB: `Dec_AvgTemp_Regridded.mat`, `MERRA2_regridded_data_<YEAR>.mat`, and `MENA_area_<YEAR>.shp` (e.g., 2016–2023).
-- Python:  
+- **GEE**: country cropland assets like `projects/ee-<user>/assets/<code>Cropland` (e.g., `afgCropland`).
+- **MATLAB**: `Dec_AvgTemp_Regridded.mat`, `MERRA2_regridded_data_<YEAR>.mat`, and `MENA_area_<YEAR>.shp` (e.g., 2016–2023).
+- **Python**:  
   - `data_n/Monthly_Avg_EvapLoss.nc` (variables: `lon`, `lat`, `totEvM<month>`),  
   - `data_in/utrack_climatology_0.5_<MM>.nc` (variable: `moisture_flow`).
 
@@ -20,10 +27,10 @@ atmosphere_tracking.py
 
 ### 1) Google Earth Engine (GEE) — reservoir identification
 - Open the GEE Code Editor → **New** → **Script**.
-- Paste `/gee/identify_mena_reservoirs.js`.
+- Paste `/gee/small_reservoirs.js`.
 - Confirm the `countriesInfo` assets (e.g., `projects/ee-<user>/assets/afgCropland`).
-- Set `years` and size class `resSize1/resSize2`.
-- Run to export SHP grids with reservoir **count** and **cumulative area** per 50×50 km cell to Google Drive.
+- Set `years` and size class `resSize1` / `resSize2`.
+- Run to export SHP grids with reservoir **count** and **cumulative area** per 50 × 50 km cell to Google Drive.
 
 ### 2) MATLAB — evaporation from reservoirs
 - Start MATLAB in `/matlab`.
@@ -31,24 +38,31 @@ atmosphere_tracking.py
 - Run:
   ```matlab
   year = 2023;   % edit in the script if needed
-  evaporation_MENA
-Output: xdailyEvaporation_MENA_4m_<YEAR>.mat (daily evaporation per grid cell).
+  evaporation
+````
+
+* Output: `xdailyEvaporation_MENA_4m_<YEAR>.mat` (daily evaporation per grid cell).
 
 ### 3) Python — atmospheric moisture tracking
 
-Python ≥3.9. Install deps:
-cd python
-python -m venv .venv && source .venv/bin/activate   # on Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+* Python ≥3.9. Install dependencies:
 
-Run for a month (e.g., July):
-python moisture_tracking.py 7
-Output: output.nc with variable forward_footprint on 0.5° grid.
+  ```bash
+  cd python
+  python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+  pip install -r requirements.txt
+  ```
+* Run for a month (e.g., July):
 
-Repro notes
+  ```bash
+  python atmosphere_tracking.py 7
+  ```
+* Output: `output.nc` with variable `forward_footprint` on a 0.5° grid.
 
-Coordinate systems: scripts assume regular lat/lon grids (EPSG:4326).
+## Repro notes
 
-Large/raster inputs aren’t included; see the Data section for required filenames and variables.
+* Coordinate systems: scripts assume regular lat/lon grids (EPSG:4326).
+* Large/raster inputs aren’t included; see **Data** section for required filenames and variables.
+* For GEE, adjust `scale` if you change reservoir size classes.
 
-For GEE, adjust scale if you change reservoir size classes.
+````
